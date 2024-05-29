@@ -24,5 +24,13 @@ function getPlayerChoice() {
 
 //round function
 function playRound(pChoice, cChoice) {
-    
+    if ((pChoice === 'rock' && cChoice === 'paper') || (pChoice === 'paper' && cChoice === 'scissors') || (pChoice === 'scissors' && cChoice === 'rock')) {
+        console.log('computer wins');
+        compScore ++;
+    } else if ((pChoice === 'rock' && cChoice === 'scissors') || (pChoice === 'scissors' && cChoice === 'paper') || (pChoice === 'paper' && cChoice === 'rock')) {
+        console.log('player wins');
+        playerScore ++;
+    } else {
+        console.log('draw!');
+    }
 }
