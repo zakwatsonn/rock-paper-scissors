@@ -1,6 +1,8 @@
 let playerScore = 0;
 let compScore = 0;
 let resultsDisplay = document.querySelector('.resultsDisplay');
+let scoreDisplay = document.querySelector('.scoreDisplay')
+const body = document.querySelector('body')
 
 //function for initialising computer choice
 function getComputerChoice() {
@@ -36,6 +38,15 @@ function playRound(pChoice, cChoice) {
         resultsDisplay.textContent = ('draw!')
     }
     console.log('at the end of this round, the scores are: player: ' + playerScore + ', and computer: ' + compScore);
+    scoreDisplay.textContent = ('Player: ' + playerScore + '   Computer: ' + compScore)
+
+    //detecting 5 points
+    if (playerScore === 5 || compScore === 5) {
+        const winDisplay = document.createElement('div')
+        winDisplay.textContent = ('The person with 5 points has won!')
+        body.append(winDisplay)
+        
+    }
 }
 
 //using event listeners with buttons
