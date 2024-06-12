@@ -1,5 +1,6 @@
 let playerScore = 0;
 let compScore = 0;
+let resultsDisplay = document.querySelector('.resultsDisplay');
 
 //function for initialising computer choice
 function getComputerChoice() {
@@ -26,31 +27,28 @@ function getPlayerChoice() {
 //round function
 function playRound(pChoice, cChoice) {
     if ((pChoice === 'rock' && cChoice === 'paper') || (pChoice === 'paper' && cChoice === 'scissors') || (pChoice === 'scissors' && cChoice === 'rock')) {
-        console.log('player chose ' + pChoice + ' and computer chose ' + cChoice + ', so computer wins');
+        resultsDisplay.textcontent = ('Player Chose ' + pChoice + ' and computer chose ' + cChoice + ' so computer wins')
         compScore ++;
     } else if ((pChoice === 'rock' && cChoice === 'scissors') || (pChoice === 'scissors' && cChoice === 'paper') || (pChoice === 'paper' && cChoice === 'rock')) {
-        console.log('player chose ' + pChoice + ' and computer chose ' + cChoice + ', so player wins');
+        resultsDisplay.textContent = ('Player Chose ' + pChoice + ' and computer chose ' + cChoice + ' so player wins')
         playerScore ++;
     } else {
-        console.log('draw!');
+        resultsDisplay.textContent = ('draw!')
     }
     console.log('at the end of this round, the scores are: player: ' + playerScore + ', and computer: ' + compScore);
 }
 
-//game function
-function playGame() {
-    playRound(getPlayerChoice(), getComputerChoice());
-    playRound(getPlayerChoice(), getComputerChoice());
-    playRound(getPlayerChoice(), getComputerChoice());
-    playRound(getPlayerChoice(), getComputerChoice());
-    playRound(getPlayerChoice(), getComputerChoice());
-    if (playerScore > compScore) {
-        console.log('after 5 rounds, player wins!');
-    } else if (playerScore < compScore) {
-        console.log('after 5 rounds, computer wins!');
-    } else if (playerScore === compScore) {
-        console.log('after 5 rounds, its a draw!');
-    }
-}
+//using event listeners with buttons
+const rockButton = document.querySelector('.rock')
+const paperButton = document.querySelector('.paper')
+const sciButton = document.querySelector('.scissors')
 
-playGame();
+rockButton.addEventListener('click', e => {
+    playRound('rock', getComputerChoice())
+})
+paperButton.addEventListener('click', e => {
+    playRound('paper', getComputerChoice())
+})
+sciButton.addEventListener('click', e => {
+    playRound('scissors', getComputerChoice())
+})
